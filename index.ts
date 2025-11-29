@@ -6,15 +6,12 @@ import { registerRoutes } from "./routes";
 import cors from "cors";
 import helmet from "helmet";
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(",")
-    : [];
-
 const log = (message: string) => console.log(`[server] ${message}`);
 
 const app = express();
+
 app.use(helmet());
-app.use(cors({ origin: "*"}));
+app.use(cors());
 
 app.use((req, res, next) => {
   res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
