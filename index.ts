@@ -5,7 +5,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import cors from "cors";
 import helmet from "helmet";
-
+//
 const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",")
     : [];
@@ -15,7 +15,7 @@ const log = (message: string) => console.log(`[server] ${message}`);
 const app = express();
 app.use(helmet());
 app.use(cors({
-  origin: allowedOrigins,
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept'],
