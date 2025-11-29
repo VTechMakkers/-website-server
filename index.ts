@@ -9,10 +9,19 @@ import helmet from "helmet";
 const log = (message: string) => console.log(`[server] ${message}`);
 
 const app = express();
+const allowedOrigins = [
+    "https://techmakkers.in",
+    "https://www.techmakkers.in",
+    "http://localhost:5174"
+];
 
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}));
 app.use(helmet());
-app.use(cors());
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
